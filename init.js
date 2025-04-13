@@ -1,15 +1,14 @@
-﻿// src/init.js
-
+// init.js
 
 let scene, camera, renderer, spiral, spiralMaterial;
-let particles = { visible: false };
-let pulseRing;
+let particles = new THREE.Object3D(); particles.visible = false;
+let pulseRing = new THREE.Mesh(new THREE.RingGeometry(1, 1.2, 32), new THREE.MeshBasicMaterial({ color: 0xffff00 }));
+pulseRing.visible = false;
 let miniSpirals = [];
 let memoryOrbs = [];
 let spiralRotationSpeed = 0.01;
 let particlesVisible = false;
 let animationFrameId;
-
 
 function animate() {
   if (!Lux._paused && spiral) {
@@ -19,52 +18,23 @@ function animate() {
   renderer.render(scene, camera);
 }
 
+// Init 3D scene
+scene = new THREE.Scene();
+camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-function createScene() {
-  scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-  camera.position.z = 5;
+// Spiral geometry
+const geometry = new THREE.TorusKnotGeometry(10, 1, 100, 16);
+spiralMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+spiral = new THREE.Mesh(geometry, spiralMaterial);
+scene.add(spiral);
 
+// Pulse ring
+scene.add(pulseRing);
 
-  renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
+// Position camera
+camera.position.z = 30;
 
-
-  spiralMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffff });
-  const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
-  spiral = new THREE.Mesh(geometry, spiralMaterial);
-  scene.add(spiral);
-
-
-  animate();
-}
-
-
-function createMiniSpiral() {
-  const mat = new THREE.MeshBasicMaterial({ color: 0xff00ff });
-  const geo = new THREE.SphereGeometry(0.1, 16, 16);
-  const mini = new THREE.Mesh(geo, mat);
-  mini.position.set(
-    (Math.random() - 0.5) * 5,
-    (Math.random() - 0.5) * 5,
-    (Math.random() - 0.5) * 5
-  );
-  scene.add(mini);
-  miniSpirals.push(mini);
-}
-
-
-// expose globally for SDK access
-window.spiral = spiral;
-window.spiralMaterial = spiralMaterial;
-window.spiralRotationSpeed = spiralRotationSpeed;
-window.createMiniSpiral = createMiniSpiral;
-window.miniSpirals = miniSpirals;
-window.pulseRing = pulseRing;
-window.particles = particles;
-window.memoryOrbs = memoryOrbs;
-window.particlesVisible = particlesVisible;
-
-
-createScene();
+animate();

@@ -1,42 +1,34 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- <title>Lux SDK v2.1 – A 5D Storytelling Toolkit</title>
- <style>
- body { margin: 0; background: #111; color: #eee; font-family: sans-serif; }
- #instructions { padding: 20px; text-align: center; }
- button { padding: 10px 20px; font-size: 16px; margin: 10px; cursor: pointer; }
- </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lux SDK v2.1 – A 5D Storytelling Toolkit</title>
+  <style>
+    body { margin: 0; background: #111; color: #eee; font-family: sans-serif; }
+    #instructions { padding: 20px; text-align: center; }
+    button { padding: 10px 20px; font-size: 16px; margin: 10px; cursor: pointer; }
+  </style>
 </head>
 <body>
- <div id="instructions">
- <h1>Lux SDK v2.1 – A 5D Storytelling Toolkit</h1>
- <p>
- Craft emotionally intelligent worlds using color, sound, and motion. <br>
- Click below to try our interactive scripts, or use voice commands like <em>"run hopeful future"</em>.
- </p>
- <button onclick="Lux.Payload.coreSequence()">Run Core Sequence</button>
- <button onclick="Lux.Payload.hopefulFuture()">Run Hopeful Future</button>
- <button onclick="Lux.AnimationPresets.run('gentleGlow')">Run Gentle Glow</button>
- <button onclick="Lux.AnimationPresets.run('starryDance')">Run Starry Dance</button>
- </div>
+  <div id="instructions">
+    <h1>Lux SDK v2.1 – A 5D Storytelling Toolkit</h1>
+    <p>Craft emotionally intelligent worlds using color, sound, and motion. Click below to try our interactive scripts, or use voice commands like <em>"run hopeful future"</em>.</p>
+    <button onclick="Lux.Payload.coreSequence()">Run Core Sequence</button>
+    <button onclick="Lux.Payload.hopefulFuture()">Run Hopeful Future</button>
+    <button onclick="Lux.AnimationPresets.run('gentleGlow')">Run Gentle Glow</button>
+    <button onclick="Lux.AnimationPresets.run('starryDance')">Run Starry Dance</button>
+  </div>
 
+  <!-- Audio assets -->
+  <audio id="pulseSound" src="assets/luxlab_pulseSound.mp3"></audio>
+  <audio id="futureSound" src="assets/luxlab_futureSound.mp3"></audio>
 
- <!-- Audio assets -->
- <audio id="pulseSound" src="assets/pulseSound.mp3"></audio>
- <audio id="futureSound" src="assets/futureSound.mp3"></audio>
+  <!-- Libraries and SDK -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="lux-sdk-v2.1.js"></script>
 
-
- <!-- Libraries and SDK -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
- <script src="lux-sdk-v2.1.js"></script>
-
-
- <!-- Initialize basic scene -->
- <script src="src/init.js"></script>
+  <!-- Initialize basic scene -->
+  <script src="init.js"></script>
 </body>
 </html>
