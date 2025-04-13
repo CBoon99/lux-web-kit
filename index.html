@@ -1,19 +1,41 @@
-<!DOCTYPE html>
+pls double check it looks a bit short <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lux SDK v2.1 – A 5D Storytelling Toolkit</title>
   <style>
-    body { margin: 0; background: #111; color: #eee; font-family: sans-serif; }
-    #instructions { padding: 20px; text-align: center; }
-    button { padding: 10px 20px; font-size: 16px; margin: 10px; cursor: pointer; }
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #111;
+      color: #eee;
+      font-family: sans-serif;
+    }
+    #instructions {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      z-index: 100;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <div id="instructions">
     <h1>Lux SDK v2.1 – A 5D Storytelling Toolkit</h1>
-    <p>Craft emotionally intelligent worlds using color, sound, and motion. Click below to try our interactive scripts, or use voice commands like <em>"run hopeful future"</em>.</p>
+    <p>
+      Craft emotionally intelligent worlds using color, sound, and motion.
+      Click below to try our interactive scripts, or use voice commands like
+      <em>"run hopeful future"</em>.
+    </p>
     <button onclick="Lux.Payload.coreSequence()">Run Core Sequence</button>
     <button onclick="Lux.Payload.hopefulFuture()">Run Hopeful Future</button>
     <button onclick="Lux.AnimationPresets.run('gentleGlow')">Run Gentle Glow</button>
@@ -27,8 +49,14 @@
   <!-- Libraries and SDK -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="lux-sdk-v2.1.js"></script>
-
-  <!-- Initialize basic scene -->
   <script src="init.js"></script>
+
+  <!-- Safe init after load -->
+  <script>
+    window.onload = () => {
+      Lux?.Script?.load?.();
+      Lux?.Voice?.init?.();
+    };
+  </script>
 </body>
 </html>
