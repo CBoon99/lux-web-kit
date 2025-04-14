@@ -11,6 +11,7 @@
       color: #eee;
       font-family: sans-serif;
     }
+
     #instructions {
       padding: 20px;
       text-align: center;
@@ -19,25 +20,49 @@
       top: 0;
       width: 100%;
     }
+
+    .logo {
+      width: 100px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
       margin: 10px;
       cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background-color: #222;
+      color: #eee;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #444;
+    }
+
+    em {
+      color: #ccc;
     }
   </style>
 </head>
 <body>
   <div id="instructions">
+    <!-- 🐋 Lux Stingray Logo -->
+    <img src="assets/lux-logo.svg" alt="Lux Logo" class="logo" />
+
     <h1>Lux SDK v2.1 – A 5D Storytelling Toolkit</h1>
     <p>
       Craft emotionally intelligent worlds using color, sound, and motion. <br>
       Click below to try our interactive scripts, or use voice commands like <em>"run hopeful future"</em>.
     </p>
-    <button onclick="Lux.Payload.coreSequence()">Run Core Sequence</button>
-    <button onclick="Lux.Payload.hopefulFuture()">Run Hopeful Future</button>
-    <button onclick="Lux.AnimationPresets.run('gentleGlow')">Run Gentle Glow</button>
-    <button onclick="Lux.AnimationPresets.run('starryDance')">Run Starry Dance</button>
+
+    <button onclick="Lux.Payload.coreSequence()">Run Lux</button>
+    <button onclick="Lux.Payload.hopefulFuture()">Generate</button>
+    <button onclick="Lux.AnimationPresets.run('gentleGlow')">Encrypt</button>
+    <button onclick="Lux.AnimationPresets.run('starryDance')">Unlock</button>
   </div>
 
   <!-- Audio assets -->
@@ -52,7 +77,3 @@
   <script type="module" src="./init.js"></script>
 </body>
 </html>
-
-
-
-
